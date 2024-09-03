@@ -21,7 +21,10 @@ https://trailhead.salesforce.com/content/learn/projects/find-and-fix-bugs-with-a
         Http http = new Http();
         HttpResponse res = http.send(req);
         String responseBody = res.getBody();
-        System.debug(responseBody);
+        if (responseBody.getStatusCode == 200) {
+            System.debug(responseBody);
+        }
+
         System.debug(http);
         
         // Step 3: Deserialize the JSON response into a list of BillWrapper objects.

@@ -1,1 +1,1 @@
-System.debug('test');
+HttpResponse response = BillAPI.getBills();

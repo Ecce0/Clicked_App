@@ -1,4 +1,4 @@
-public with sharing class BillBatch implements Database.Batchable<Bill__c>, Database.Stateful {
+public with sharing class BillBatch implements Database.Batchable<sObject>, Database.AllowsCallouts, Database.Stateful {
     public List<Id> receivesBillByEmail = new List<Id>();
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
