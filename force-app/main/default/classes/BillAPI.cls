@@ -22,9 +22,9 @@ https://trailhead.salesforce.com/content/learn/projects/find-and-fix-bugs-with-a
         Http http = new Http();
         HttpResponse res = http.send(req);
         String responseBody = res.getBody();
-        if (responseBody.getStatusCode() == 200) {
-            System.debug(responseBody);
-        }
+        // if (responseBody.getStatusCode() == 200) {
+        //     System.debug(responseBody);
+        // }
 
         System.debug(http);
         

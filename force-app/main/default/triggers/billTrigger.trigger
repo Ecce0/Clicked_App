@@ -12,7 +12,8 @@ trigger billTrigger on Bill__c (before insert, after insert) {
             bill.Account__c.addError('The Account number is required');
         }
 
-        if (bill.Invoice_Number__c.length == 0 || bill.Invoice_Number__c == null) {
+        //if (bill.Invoice_Number__c.length == 0 || bill.Invoice_Number__c == null) {
+        if (bill.Invoice_Number__c == null) {
             /** to create a random number:
              * UUID randomUuid = UUID.randomUUID();
                 System.debug(randomUuid); 
