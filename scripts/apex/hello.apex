@@ -8,3 +8,11 @@
 string tempvar = 'Enter_your_name_here';
 System.debug('Hello World!');
 System.debug('My name is ' + tempvar);
+BillBatch batch = new BillBatch();
+id batchId = Database.executeBatch(batch);
+System.debug(batch);
+System.debug(batchId);
+
+//Http http = new Http();
+// HttpResponse res = BillAPI.getBills();
+// System.debug(res);

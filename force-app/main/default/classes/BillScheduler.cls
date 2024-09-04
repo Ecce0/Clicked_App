@@ -3,4 +3,4 @@ public with sharing class BillScheduler implements Schedulable {
         BillBatch bb = new BillBatch();
         Database.executeBatch(bb);
     }
-}
+};

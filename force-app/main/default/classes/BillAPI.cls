@@ -15,13 +15,14 @@ https://trailhead.salesforce.com/content/learn/projects/find-and-fix-bugs-with-a
         req.setEndpoint('https://my-json-server.typicode.com/walters954/clicked-intro-development-server/bills');
         req.setMethod('GET');
         System.debug(req);
+        //console.log(req);
     
         //https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_restful_http.htm
         // Step 2: Set up an Http object and an HTTPResponse object, then get the response body.
         Http http = new Http();
         HttpResponse res = http.send(req);
         String responseBody = res.getBody();
-        if (responseBody.getStatusCode == 200) {
+        if (responseBody.getStatusCode() == 200) {
             System.debug(responseBody);
         }
 
