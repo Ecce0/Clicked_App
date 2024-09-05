@@ -12,7 +12,3 @@ BillBatch batch = new BillBatch();
 id batchId = Database.executeBatch(batch);
 System.debug(batch);
 System.debug(batchId);
-
-//Http http = new Http();
-// HttpResponse res = BillAPI.getBills();
-// System.debug(res);
