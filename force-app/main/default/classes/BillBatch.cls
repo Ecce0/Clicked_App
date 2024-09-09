@@ -1,5 +1,6 @@
 public with sharing class BillBatch implements Database.Batchable<sObject>, Database.AllowsCallouts, Database.Stateful {
     public List<Id> receivesBillByEmail = new List<Id>();
+    private String debug;
 
     public Database.QueryLocator start(Database.BatchableContext bc) {
         // This method will query all active accounts that have a value for Bill_By_Email__c.
@@ -7,7 +8,10 @@ public with sharing class BillBatch implements Database.Batchable<sObject>, Data
         // Use the Database.getQueryLocator(String) method to return the result.
         // Query for the following fields: Id, Bill_By_Email__c.
         // Learn more about QueryLocator: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_class_Database_QueryLocator.htm
-     String query = 'SELECT Id, Bill_By_Email__c FROM Account WHERE Bill_By_Email__c = \'Yes\'';
+     String query = 'SELECT Id, Bill_By_Email__c FROM Account WHERE Bill_By_Email__c = true';
+
+     System.debug('----------------------' + query);
+
             return Database.getQueryLocator(query);
         }
     
@@ -54,10 +58,11 @@ public with sharing class BillBatch implements Database.Batchable<sObject>, Data
         // Finally, call our BillEmailer.sendEmails(sendMap) method. This method is VOID, so there will be no return value.
         // Learn more about generating PDFs: https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_controller_sosc_output_pdf.htm
         // 1. Query for the recently created bills for each account
-        List<Account> accountsWithBills = [SELECT Id, 
-                                           (SELECT Id FROM Bills__r ORDER BY CreatedDate DESC) 
-                                           FROM Account 
-                                           WHERE Id IN :this.receivesBillByEmail];
+        List<Account> accountsWithBills = [SELECT Id, Email__c, 
+                                   (SELECT Id FROM Bills__r ORDER BY CreatedDate DESC) 
+                                   FROM Account 
+                                   WHERE Id IN :this.receivesBillByEmail];
+
 
         // 2. Map to associate the most recent bill ID with the corresponding account ID
         Map<Id, Id> billMap = new Map<Id, Id>();
