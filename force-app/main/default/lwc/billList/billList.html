@@ -1,3 +1,31 @@
 <template>
-	
+    <lightning-card title="Bill List" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <lightning-input 
+                type="search" 
+                label="Search by Invoice Number" 
+                onchange={handleSearchChange} 
+                placeholder="Search for Bills">
+            </lightning-input>
+        </div>
+        
+        <lightning-layout multiple-rows>
+            <template if:true={bills}>
+                <template for:each={bills} for:item="bill">
+                    <lightning-layout-item key={bill.Invoice_Number__c} size="12">
+                        <lightning-card title={bill.Invoice_Number__c}>
+                            <p class="slds-p-horizontal_small">
+                                <strong>Balance:</strong> {bill.Balance__c} <br/>
+                                <strong>Account:</strong> {bill.Account__c}
+                            </p>
+                        </lightning-card>
+                    </lightning-layout-item>
+                </template>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error">An error occurred: {error}</p>
+            </template>
+        </lightning-layout>
+    </lightning-card>
 </template>
